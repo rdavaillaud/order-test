@@ -1,0 +1,14 @@
+$primary: darken(#428bca, 20%);
+
+$farmitoo-green: #2b9545;
+$farmitoo-black: #333;
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+body {
+  background-color: #fff;
+  color: $farmitoo-black;
+}
+
+h1 {
+  color: $farmitoo-green;
+}

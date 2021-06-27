@@ -44,6 +44,6 @@ Au niveau global, sera évalué :
 - Les choix de conception
 - L'organisation du code
 
-#### Test
+#### BrandTest
 L'objectif n'est pas un code coverage de 100% ! 
 Mais un choix judicieux des choses à tester.

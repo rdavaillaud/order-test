@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Entity;
+declare(strict_types=1);
+
+namespace App\Order\Application;
 
 class Product
 {
@@ -31,12 +33,27 @@ class Product
         $this->brand = $brand;
     }
 
-
     /**
      * @return string
      */
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrand(): string
+    {
+        return $this->brand;
     }
 }

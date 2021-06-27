@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Commande n°{{ order.orderId }}</h1>
+
+        <div class="container gx-0">
+            <div class="row">
+                <div class="col-6">
+                    <table class="table table-">
+                        <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th class="text-end">Prix (HT)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in order.items %}
+                            <tr>
+                                <td>
+                                    <p><span class="fw-bold">{{ item.title }}</span><br><span
+                                                class="fst-italic">{{ item.brand }}</span></p>
+                                    {{ item.unit_price|format_currency('EUR', {decimal_always_shown: 0, rounding_mode: 'floor', min_fraction_digit:0}) }} x {{ item.quantity }}
+                                </td>
+                                <td class="text-end align-bottom">{{ item.price|format_currency('EUR', {decimal_always_shown: 0, rounding_mode: 'floor', min_fraction_digit:0}) }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr class="small">
+                            <td>Sous-total HT</td>
+                            <td class="text-end">{{ order.allItemPrice|format_currency('EUR', {decimal_always_shown: 0, rounding_mode: 'floor', min_fraction_digit:0}) }}</td>
+                        </tr>
+                        <tr class="small">
+                            <td>Frais de port</td>
+                            <td class="text-end">{{ order.shippingCost|format_currency('EUR', {decimal_always_shown: 0, rounding_mode: 'floor', min_fraction_digit:0}) }}</td>
+                        </tr>
+                        {% if order.hasPromotion %}
+                            <tr class="table-info">
+                                <td>Promotions</td>
+                                <td class="text-end fs-5">- {{ order.promotionAmount|format_currency('EUR', {decimal_always_shown: 0, rounding_mode: 'floor', min_fraction_digit:0}) }}</td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <td>Total HT</td>
+                            <td class="text-end">{{ order.totalPrice|format_currency('EUR', {decimal_always_shown: 0, rounding_mode: 'floor', min_fraction_digit:0}) }}</td>
+                        </tr>
+                        <tr class="small">
+                            <td>TVA</td>
+                            <td class="text-end">{{ order.vat|format_currency('EUR', {decimal_always_shown: 0, rounding_mode: 'floor', min_fraction_digit:0}) }}</td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td>Total TTC</td>
+                            <td class="text-end fs-5 fw-bold">{{ order.totalPriceWithTax|format_currency('EUR', {decimal_always_shown: 0, rounding_mode: 'floor', min_fraction_digit:0}) }}</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 text-end">
+                    <button class="btn btn-success">Accéder au paiement</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
